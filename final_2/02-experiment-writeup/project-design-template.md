@@ -8,7 +8,7 @@ Follow this as a guide to completing the project design writeup. The questions f
 * What kind of impact do you think it could have?
 * What do you think will have the most impact in predicting the value you are interested in solving for?
 
-This project is about tagging news/blog articles with appropriate content tags. Article tags can be used to recommend new articles to users who read articles with the same tag. Currently the articles are tagged by an editor. I would like to train a classifier to predict what content tags a given article should have. This would be useful if it could eliminate the task of manually tagging articles. It might also include tags the editor may have missed, which could lead to better recommendations for users. 
+This project is about tagging news/blog articles with appropriate content tags. Article tags can be used to make recommendations of new articles to users who read articles with the same tag. Currently the articles are tagged manually by an editor. I would like to train a classifier to predict what content tags a given article should have. This would be useful if it could eliminate the task of manually tagging articles. It might also include tags the editor may have missed, which could lead to better recommendations for users. 
 
 I believe the name of the author, the author's profession/title, length of the article, the words used in the article, and the order of the words (n-grams) might be useful features for accurately predicting tags.
 
@@ -16,7 +16,7 @@ I believe the name of the author, the author's profession/title, length of the a
 * Description of data set available, at the field level (see table)
 * If from an API, include a sample return (this is usually included in API documentation!) (if doing this in markdown, use the javacription code tag)
 
-I will be scraping article data (including text, author info, published date, and tags) from the OPEN Forum website (https://www.americanexpress.com/us/small-business/openforum/explore/).
+I will be scraping article data (including text, author info, published date, and tags) from the OPEN Forum website (https://www.americanexpress.com/us/small-business/openforum/explore/). I'm still in the process of setting up the scraping with BeautifulSoup so I haven't decided on precise fields yet.'
 
 ### Domain knowledge
 * What experience do you already have around this area?
@@ -26,7 +26,7 @@ I will be scraping article data (including text, author info, published date, an
     * This could even just be something like "the marketing team put together a forecast in excel that doesn't do well."
     * Include a benchmark, how other models have performed, even if you are unsure what the metric means.
 
-This article discusses using nearest neighbors to recommend post tags. It analyzes how similar posts are through a method called tf–idf. I'm not sure if this is the best approach for my text analysis but it is something to consider. 
+This article discusses using nearest neighbors to recommend post tags. It analyzes how similar posts are through a method called tf–idf. I will most likely use this text analysis approach.
 (https://medium.com/data-lab/how-we-used-data-to-suggest-tags-for-your-story-a120076d0bb6#.n08nlgol1)
 
 Scikit learn has a tutorial on text processing so I might use some of those techniques for representing my text as a feature. 
@@ -41,13 +41,10 @@ Scikit learn has a tutorial on text processing so I might use some of those tech
     * What's the cost of your model being wrong? (What's the benefit of your model being right?)
     * Is any of the data incorrect? Could it be incorrect?
     
-I plan on training a classifier on the features and Y values of my training dataset.
+I plan on training a classifier on the features and Y values (tags) of my training dataset.
+A concern is there are a LOT of possibilities for the article tags, and articles can have more than one tag. So determining the accuracy might be difficult if the classifier is able to predict some of the tags correctly but not all. 
 
-I'm not sure exactly how I will do the NLP part of this project. How will I represent the text as a feature? 
-
-There are a LOT of possibilities for the article tags, and articles can have more than one tag. So determining the accuracy might be difficult if the classifier is able to predict some of the tags correctly but not all. 
-
-The risk is adding tags that definitely do not belong on an article. Then we end of recommending articles that users might have no interest in. Another risk is not adding tags that definitely should be added. Then we lose out on recommending an article to someone who might enjoy it. We want to minimize both these risks. But we'll still have someone reviewing the tags so it's not incredibly important - maybe the tags could be presented as suggested tags while they are reviewing the articles. 
+The risk is adding tags that definitely do not belong on an article. Then we end of recommending articles that users might have no interest in. Another risk is not adding tags that definitely should be added. Then we lose out on recommending an article to someone who might enjoy it. We want to minimize both these risks. But we'll still have someone reviewing the tags so it's not incredibly important - maybe the tags could be presented as suggested tags while the editor is reviewing the articles. 
 
 ### Outcomes
 * What do you expect the output to look like?
